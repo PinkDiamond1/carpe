@@ -1,5 +1,5 @@
 use std::{env, path::PathBuf};
-use systemstat::CPULoad;
+
 use tokio::task;
 use crate::{carpe_error::CarpeError, configs::{get_cfg, get_diem_client, get_tx_params}, configs_profile::get_local_proofs_this_profile, system};
 use anyhow::Error;

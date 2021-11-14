@@ -1,8 +1,8 @@
 extern crate systemstat;
 
 use anyhow::{bail, Error};
-use std::thread;
-use std::time::Duration;
+
+
 // use systemstat::{CPULoad, Platform};
 use sysinfo::{ProcessExt, System, SystemExt, get_current_pid};
 
