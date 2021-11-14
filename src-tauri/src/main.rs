@@ -10,6 +10,7 @@ pub mod configs_network;
 pub mod configs_profile;
 pub mod carpe_error;
 pub mod seed_peers;
+pub mod system;
 use tauri::{Menu, MenuItem, Submenu};
 use crate::{commands::*};
 
@@ -69,6 +70,7 @@ fn main() {
     set_env,
     debug_submit_proof_zero,
     get_local_proofs,
+    get_cpu,
  
     // Debug
     init_swarm,

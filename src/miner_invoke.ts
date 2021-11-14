@@ -148,3 +148,21 @@ export const submitProofZero = async () => {
     });
 }
 
+
+
+export const getCPULoad = async () => {
+  invoke("get_cpu", {})
+    .then((res) => {
+      console.log(res);
+      let t = get(tower);
+      t.cpu_usage = res;
+      tower.set(t);
+      window.alert(JSON.stringify(res));
+      responses.set(res as string);
+      return res
+    })
+    .catch((e) => {
+      raise_error(e, false);
+    });
+}
+

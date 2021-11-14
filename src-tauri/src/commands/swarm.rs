@@ -46,14 +46,14 @@ fn check_process(process_str: &str) -> bool {
     // get processes from sysinfo
     let mut system = sysinfo::System::new_all();
     system.refresh_all();
-    for (_, process) in system.get_processes() {
+    for (_, process) in system.processes() {
         if process.name() == process_str {
             // TODO: doesn't always catch `miner` running, see get by name below.
             return true;
         }
     }
     // also try by name (yield different results), most reliable.
-    let p = system.get_process_by_name(process_str);
+    let p = system.process_by_name(process_str);
     !p.is_empty()
 }
 #[derive(serde::Serialize, serde::Deserialize)]

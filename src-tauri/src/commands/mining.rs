@@ -1,6 +1,7 @@
 use std::{env, path::PathBuf};
+use systemstat::CPULoad;
 use tokio::task;
-use crate::{carpe_error::CarpeError, configs::{get_cfg, get_diem_client, get_tx_params}, configs_profile::get_local_proofs_this_profile};
+use crate::{carpe_error::CarpeError, configs::{get_cfg, get_diem_client, get_tx_params}, configs_profile::get_local_proofs_this_profile, system};
 use anyhow::Error;
 use diem_json_rpc_types::views::TowerStateResourceView;
 use ol::config::AppCfg;
@@ -204,3 +205,10 @@ pub fn get_env() -> Result<String, CarpeError> {
   Ok(v)
 }
 
+
+
+#[tauri::command]
+pub fn get_cpu() -> Result<f32, CarpeError> {
+  let v = system::get_current_process_cpu()?;
+  Ok(v)
+}

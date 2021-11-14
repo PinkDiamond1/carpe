@@ -4,7 +4,7 @@ export interface ClientTowerStatus {
   on_chain?: TowerStateView,
   count_proofs_this_session: number,
   proofs_saved?: [string],
-  cpu_usage: number,
+  cpu_usage?: any,
   progress: ProofProgress,
 }
 
