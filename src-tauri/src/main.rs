@@ -68,6 +68,7 @@ fn main() {
     get_env,
     set_env,
     debug_submit_proof_zero,
+    get_local_proofs,
  
     // Debug
     init_swarm,

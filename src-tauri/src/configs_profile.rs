@@ -49,8 +49,9 @@ pub fn get_local_proofs_this_profile() -> Result<Vec<PathBuf>, Error> {
   // Default is to fetch last 10 proofs.
   let cfg = get_cfg()?;
   let block_dir = cfg.workspace.node_home.join(cfg.workspace.block_dir);
-  let str_path = block_dir.to_str().unwrap();
-  let p= glob(str_path)?
+  let str_path = format!("{}/*.json", block_dir.to_str().unwrap());
+  dbg!(&str_path);
+  let p= glob(&str_path)?
   .filter_map(Result::ok) 
   .collect();
   dbg!(&p);

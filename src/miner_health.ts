@@ -1,8 +1,9 @@
-import { getTowerChainView } from "./miner_invoke";
+import { getLocalProofs, getTowerChainView } from "./miner_invoke";
 
 export function healthCheck() {
   console.log("healthcheck");
   getTowerChainView();
+  getLocalProofs();
 }
 
 

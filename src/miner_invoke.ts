@@ -50,18 +50,18 @@ export const getTowerChainView = async () => {
 
 export const getLocalProofs = async () => {
   await invoke("get_local_proofs", {})
-    .then((res: TowerStateView) => {
+    .then((res: [string]) => {
       console.log(res);
       // if res.
       let t = get(tower);
-      t.on_chain = res;
+      t.proofs_saved = res;
       tower.set(t);
       responses.set(JSON.stringify(res));
     })
     .catch((e) => {
-      let t = get(tower);
-      t.on_chain = {};
-      tower.set(t);
+      // let t = get(tower);
+      // t.on_chain = {};
+      // tower.set(t);
 
       raise_error(e, true)
     });

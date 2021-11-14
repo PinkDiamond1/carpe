@@ -3,7 +3,7 @@ export interface ClientTowerStatus {
   latest_proof: VDFProof,
   on_chain?: TowerStateView,
   count_proofs_this_session: number,
-  last_local_proof?: string,
+  proofs_saved?: [string],
   cpu_usage: number,
   progress: ProofProgress,
 }

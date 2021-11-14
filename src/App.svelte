@@ -64,13 +64,13 @@
 
     ///// Backlog ////
     listen("backlog-success", (event) => {
-      window.alert(event.payload);
+      // window.alert(event.payload);
       responses.set(event.payload as string);
       backlog_in_progress.set(false);
     });
 
     listen("backlog-error", (event) => {
-      window.alert(event.payload);
+      // window.alert(event.payload);
       raise_error(event.payload, false);
       backlog_in_progress.set(false);
     });
