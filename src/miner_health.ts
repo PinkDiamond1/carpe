@@ -7,5 +7,6 @@ export function healthCheck() {
   // get latest file in local
   getLocalProofs();
   // get cpu usage
-  getCPULoad();
+  // TODO: CPU load is erratic for both system and process.
+  //   getCPULoad();
 }

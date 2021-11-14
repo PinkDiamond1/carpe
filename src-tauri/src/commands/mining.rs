@@ -209,6 +209,6 @@ pub fn get_env() -> Result<String, CarpeError> {
 
 #[tauri::command]
 pub fn get_cpu() -> Result<f32, CarpeError> {
-  let v = system::get_current_process_cpu()?;
-  Ok(v)
+  let v = system::get_cpu_stats()?;
+  Ok(v.user)
 }
