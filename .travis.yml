@@ -1,33 +1,20 @@
-language: rust
+branches:
+  only:
+  # - master
+  - /^release-.*$/
+
+language: rust # TODO: Has error with CLANG 3.9+ not being found. However CLANG 9 is installed.
 rust:
   - stable
 
 os: osx
+osx_image: xcode7.3
 
 addons:
   homebrew:
     packages:
     - llvm
     - gmp
-
-
-# env:
-#   - RUST_BACKTRACE=1
-
-# addons:
-#   apt:
-#     packages:
-#       - libwebkit2gtk-4.0-dev
-#       - libglib2.0-*
-#       - libssl-dev
-#       - libgtk-3-dev
-#       - libappindicator3-dev
-#       - patchelf
-#       - librsvg2-dev
-#       - libvips-dev
-
-# install:
-#   - if [ $TRAVIS_OS_NAME = windows ]; then choco install -y visualstudio2019buildtools --package-parameters "--productId visualstudio2019community --allWorkloads --includeRecommended --includeOptional --passive --locale en-US" rust; fi
 
 env:
   - NODE_VERSION="16.0" LDFLAGS="-L/usr/local/opt/llvm/lib" CPPFLAGS="-I/usr/local/opt/llvm/include"
@@ -39,8 +26,7 @@ before_install:
   - nvm install $NODE_VERSION
   - node -v
   - npm install --global yarn
-  # - brew install --with-toolchain llvm
-  # - brew info llvm
+
 
 script:
   - cd src-tauri && cargo build
@@ -48,12 +34,12 @@ script:
   - yarn run tauri build
   - cd /Users/travis/build/OLSF/carpe/src-tauri/target/release/bundle/dmg/ && mv carpe_0.0.1-alpha.0_x64.dmg carpe_0.0.1-alpha.0_x64-10.13.dmg
   
-
 deploy:
   provider: releases
   api_key:
     secure: "CKC9IVRK2F7fFMtgAX8eS6JD3OmPdqaZjcMycUZIny2sVHKojEHbMKM1kjj/QZdSOCqV2CQ/oM7qZfWqAsAWJPKN2mSd4ZjvQj9HEkoisSURhif6KnSuDdQz2ff5hthU26P27+VMVe36MJNG9ajRHCk2VKiRiTI3W6M3/MVIJTyWKRYqZAqshuYIS/aVWDub+lyuBuC+KmiZ0VM6gcu4+LakDBGxcMJllIFRkYLj9/oiUppFQyxtq6gAhbf2M0+kCj0eIZTMdrKRMlDdOm/27RiKEtsiru+6HucXlIlSbYIoiFeX7Yy8P0v2zFyv00zQKA2/BLgdk3wjLWFVPZ6VkLoca+cPX7ir8zVegqNvhIhYlZMqprUifaGYY59SQZWh1Axoqap/wQIBjqqvEqRzKc4HBjTY4aOwOA8FHL+Dxi/NtbrmSML2UR5LLZV49qz9+YaiYkinVq9F2esBDNNPPdxk4iEq+fAhnIIZMUtgWMVxzBXxQPqXu5y4Q9PpUxCX8UMCcpLAvNPw4NV+P1jzjE1ifVHVBLSQBfCCcK8pbjwVLSHJOiMb/JbUBIchsUt4OXAcp1IBj+GV62kK+9ckW972LZUUZs7NsYyz+/lgjHA7akZGsPYQ8ttXWzuVdkdOghWvgrp9IIigyi/t/40tlmoxhzVaKQ/0xmHIJHghmEg="
-  file: "/Users/travis/build/OLSF/carpe/src-tauri/target/release/bundle/dmg/carpe_0.0.1-alpha.0_x64-10.13.dmg"
+    # TODO: This needs a differnt file name so it doesn't overwrite the other versions of Mac builds
+  file: "/Users/travis/build/OLSF/carpe/src-tauri/target/release/bundle/dmg/carpe_0.0.1-alpha.0_x64.dmg"
   skip_cleanup: true
   on:
     tags: true

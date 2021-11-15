@@ -25,7 +25,7 @@
   import { debugMode, responses } from "./debug";
   import { get } from "svelte/store";
   import Nav from "./components/Nav.svelte";
-import DebugCard from "./components/dev/DebugCard.svelte";
+  import DebugCard from "./components/dev/DebugCard.svelte";
 
   let debug = false;
   debugMode.subscribe((d) => {
@@ -76,14 +76,14 @@ import DebugCard from "./components/dev/DebugCard.svelte";
       raise_error(event.payload, false);
       backlog_in_progress.set(false);
     });
+
   });
 </script>
 
 <main class="uk-background-muted">
   <div class="uk-container">
     <Router>
-       <Nav />
-
+      <Nav />
       <div class="uk-background-muted uk-margin-large">
         <Route path="/" component={Wallet} primary={false} />
         <!-- <Route path="/add-account" component={AddAccount} primary={false} /> -->
@@ -104,10 +104,6 @@ import DebugCard from "./components/dev/DebugCard.svelte";
           <DebugCard/>
         {/if}
       </div>
-
     </Router>
-  </div>
-
-
-  
+  </div>  
 </main>
